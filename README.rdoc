@@ -1,12 +1,11 @@
 = simple-banner-for-irb
-== Abstract
-
-バナーを表示する Ruby スクリプトです。
-
 == Description
 
 バナーを表示するシンプルなスクリプトです。
 単体実行もできますが、irb の起動時のバナー用に作りました。
+
+下のようなバナーを表示します。
+表示内容は、"RUBY"(花文字)、RUBY_DESCRIPTION、RUBY_COPYRIGHT です。
 
 
      ######  #     # ######  #     #
@@ -22,10 +21,10 @@
   ruby 1.9.2p0 (2010-08-18 revision 29036) [x86_64-linux]
   ruby - Copyright (C) 1993-2010 Yukihiro Matsumoto
 
-上のようなバナーを表示します。
-表示内容は、"RUBY"(花文字)、RUBY_DESCRIPTION、RUBY_COPYRIGHT です。
+
 "RUBY"(花文字) と RUBY_DESCRIPTION のバージョンは色付きで表示されます。
 色は、ruby1.8 では「緑」、ruby1.9 では「赤」です。
+
 また、"RUBY"(花文字)はスクロールしながら表示されます。
 
 == System Requirement
