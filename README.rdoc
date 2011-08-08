@@ -1,0 +1,53 @@
+= simple-banner-for-irb
+== Abstract
+
+バナーを表示する Ruby スクリプトです。
+
+== Description
+
+バナーを表示するシンプルなスクリプトです。
+単体実行もできますが、irb の起動時のバナー用に作りました。
+
+
+     ######  #     # ######  #     #
+     #     # #     # #     #  #   #
+     #     # #     # #     #   # #
+     ######  #     # ######     #
+     #   #   #     # #     #    #
+     #    #  #     # #     #    #
+     #     #  #####  ######     #
+
+
+
+  ruby 1.9.2p0 (2010-08-18 revision 29036) [x86_64-linux]
+  ruby - Copyright (C) 1993-2010 Yukihiro Matsumoto
+
+上のようなバナーを表示します。
+表示内容は、"RUBY"(花文字)、RUBY_DESCRIPTION、RUBY_COPYRIGHT です。
+"RUBY"(花文字) と RUBY_DESCRIPTION のバージョンは色付きで表示されます。
+色は、ruby1.8 では「緑」、ruby1.9 では「赤」です。
+また、"RUBY"(花文字)はスクロールしながら表示されます。
+
+== System Requirement
+
+色付けやスクロールは TTY のエスケープシーケンスを使って制御しています。
+エスケープシーケンスをサポートした TTY 上で動作します。
+
+開発した環境は、Ubuntu Linux 11.04 です。環境変数 TERM の値は 'xterm' です。
+
+  $ echo $TERM
+  xterm
+
+== Quick Start
+~/.irbrc に以下を追加すると irb の起動時にスクリプトが実行されてバナーが表示されます。
+
+  require 'banner'
+
+.irbrc についての詳細は irb のマニュアルなどを参照してください。
+
+== LICENSE
+
+本家 Ruby と同じライセンスで配布します。
+- http://www.ruby-lang.org/ja/LICENSE.txt
+
+
