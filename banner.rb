@@ -52,16 +52,20 @@ instance_eval do
     puts descr
   else
     lines    = banner.split($/)
-    pos      = proc {|n,i| e[:MOVE][lines.length - n + i, indent=4] }
+    indent   = 4
+    pos      = proc {|n,i| e[:MOVE][lines.length - n + i, indent] }
     interval = 0.05
+
 
     (0...lines.length).each do |n|
       puts e[:CLS]
+      puts e[:MOVE][lines.length + 1, indent] + descr
       (0..n).each {|i| puts pos[n, i] + lines[i] }
       sleep interval
     end
 
-    puts e[:RESET] + descr
+    #puts e[:RESET] + descr
+    puts e[:MOVE][lines.length + descr.split($/).length + 1, 1] + e[:RESET]
   end
 end
 
