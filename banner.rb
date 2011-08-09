@@ -1,18 +1,18 @@
 #!/usr/bin/env ruby
 
 instance_eval do
-  banner = <<-BANNER
+  #
+  # version color
+  #
+  version_color = RUBY_VERSION >= '2.0' ? :BLUE  :
+                  RUBY_VERSION >= '1.9' ? :RED   :
+                  RUBY_VERSION >= '1.8' ? :GREEN : :YELLOW
 
-  ######  #     # ######  #     #
-  #     # #     # #     #  #   #
-  #     # #     # #     #   # #
-  ######  #     # ######     #
-  #   #   #     # #     #    #
-  #    #  #     # #     #    #
-  #     #  #####  ######     #
-  BANNER
-
-  e = $stdout.isatty ? {
+  #
+  # escape sequence
+  #
+  e = Hash.new {|h,k| h[k] = k.to_s =~ /\A[[:lower:]]/ ? proc {""} : "" }
+  e.merge!({
     :BOLD      => "\e[1m",
     :UNDERLINE => "\e[4m",
     :REVERSE   => "\e[7m",
@@ -27,43 +27,52 @@ instance_eval do
     :RESET     => "\e[m",
 
     :CLS       => "\e[2J",
-    :MOVE      => proc {|l,c| "\e[#{l};#{c}H" },
-    :SAVE      => "\e[s",
-    :UNDO      => "\e[u",
-  } : Hash.new("")
+    :HOME      => "\e[H",
+#    :move      => proc {|l,c| "\e[#{l};#{c}H" },
+#    :save      => proc { "\e[s" },
+#    :undo      => proc { "\e[u" },
+  }) if $stdout.isatty
 
-  color = RUBY_VERSION >= '2.0' ? e[:BLUE ] :
-          RUBY_VERSION >= '1.9' ? e[:RED  ] :
-          RUBY_VERSION >= '1.8' ? e[:GREEN] : e[:YELLOW]
+  color = proc {|s| e[:BOLD] + e[version_color] + s + e[:RESET] }
 
-  banner = e[:BOLD] + color + banner + e[:RESET]
+  #
+  # strings
+  #
+  banner = <<-BANNER
+
+      ######  #     # ######  #     #
+      #     # #     # #     #  #   #
+      #     # #     # #     #   # #
+      ######  #     # ######     #
+      #   #   #     # #     #    #
+      #    #  #     # #     #    #
+      #     #  #####  ######     #
+
+  BANNER
 
   descr = <<-DESCR
 
-  #{RUBY_DESCRIPTION.sub(/^ruby \S+/){ e[:BOLD] + color + $& + e[:RESET] }}
+  #{RUBY_DESCRIPTION.sub(/^ruby \S+/){ color[$&] }}
   #{RUBY_COPYRIGHT}
 
   DESCR
 
-
+  #
+  # print banner
+  #
   unless $stdout.isatty
-    puts banner
-    puts descr
+    puts banner + descr
   else
-    lines    = banner.split($/)
-    height   = lines.length
-    pos      = proc {|d| e[:MOVE][height + d, indent=4] }
-    interval = proc { sleep 0.05 }
+    height = banner.split($/).length
+    blanks = ([$/] * height).join
 
-    (0...height).each do |n|
-      puts e[:CLS] + pos[+1] + descr
+    (0..height).each do |i|
+      puts e[:CLS] + e[:HOME]
+      puts color[ (blanks + banner).split($/)[i, height].join($/) ]
+      puts descr
 
-      (0..n).each {|i| puts pos[i - n] + lines[i] }
-
-      interval.call
+      sleep 0.1
     end
-
-    puts pos[descr.split($/).length + 1] + e[:RESET]
   end
 end
 
