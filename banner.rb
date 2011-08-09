@@ -10,7 +10,6 @@ instance_eval do
   #   #   #     # #     #    #
   #    #  #     # #     #    #
   #     #  #####  ######     #
-
   BANNER
 
   e = $stdout.isatty ? {
@@ -28,7 +27,7 @@ instance_eval do
     :RESET     => "\e[m",
 
     :CLS       => "\e[2J",
-    :MOVE      => proc {|l,c| "\e[#{l||1};#{c||1}H" },
+    :MOVE      => proc {|l,c| "\e[#{l};#{c}H" },
     :SAVE      => "\e[s",
     :UNDO      => "\e[u",
   } : Hash.new("")
@@ -41,7 +40,7 @@ instance_eval do
 
   descr = <<-DESCR
 
-  #{RUBY_DESCRIPTION.sub(/^(ruby )(\S+)/){ $1 + e[:BOLD] + color + $2 + e[:RESET] }}
+  #{RUBY_DESCRIPTION.sub(/^ruby \S+/){ e[:BOLD] + color + $& + e[:RESET] }}
   #{RUBY_COPYRIGHT}
 
   DESCR
@@ -52,19 +51,19 @@ instance_eval do
     puts descr
   else
     lines    = banner.split($/)
-    indent   = 4
-    pos      = proc {|n,i| e[:MOVE][lines.length - n + i, indent] }
-    interval = 0.05
+    height   = lines.length
+    pos      = proc {|d| e[:MOVE][height + d, indent=4] }
+    interval = proc { sleep 0.05 }
 
+    (0...height).each do |n|
+      puts e[:CLS] + pos[+1] + descr
 
-    (0...lines.length).each do |n|
-      puts e[:CLS]
-      puts e[:MOVE][lines.length, indent] + descr
-      (0..n).each {|i| puts pos[n, i] + lines[i] }
-      sleep interval
+      (0..n).each {|i| puts pos[i - n] + lines[i] }
+
+      interval.call
     end
 
-    puts e[:MOVE][lines.length + descr.split($/).length, 1] + e[:RESET]
+    puts pos[descr.split($/).length + 1] + e[:RESET]
   end
 end
 
