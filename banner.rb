@@ -59,13 +59,12 @@ instance_eval do
 
     (0...lines.length).each do |n|
       puts e[:CLS]
-      puts e[:MOVE][lines.length + 1, indent] + descr
+      puts e[:MOVE][lines.length, indent] + descr
       (0..n).each {|i| puts pos[n, i] + lines[i] }
       sleep interval
     end
 
-    #puts e[:RESET] + descr
-    puts e[:MOVE][lines.length + descr.split($/).length + 1, 1] + e[:RESET]
+    puts e[:MOVE][lines.length + descr.split($/).length, 1] + e[:RESET]
   end
 end
 
