@@ -5,7 +5,7 @@
 単体実行もできますが、irb の起動時のバナー用に作りました。
 
 下のようなバナーを表示します。
-表示内容は、"RUBY"(花文字)、RUBY_DESCRIPTION、RUBY_COPYRIGHT です。
+表示内容は、"RUBY"(バナー)、RUBY_DESCRIPTION、RUBY_COPYRIGHT です。
 
 
      ######  #     # ######  #     #
@@ -22,10 +22,11 @@
   ruby - Copyright (C) 1993-2010 Yukihiro Matsumoto
 
 
-"RUBY"(花文字) と RUBY_DESCRIPTION のバージョンは色付きで表示されます。
+"RUBY" と RUBY_DESCRIPTION の ruby バージョン部分は色付きで表示されます。
+
 色は、ruby1.8 では「緑」、ruby1.9 では「赤」です。
 
-また、"RUBY"(花文字)はスクロールしながら表示されます。
+また、"RUBY"はスクロールしながら表示されます。
 
 == System Requirement
 
