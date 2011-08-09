@@ -39,10 +39,11 @@ It operates on TTY that supports the escape sequence.
 
 エスケープシーケンスをサポートした TTY 上で動作します。
 
-The platform used to develop is Ubuntu Linux 11.04.
+
+By the way, The platform used to develop is Ubuntu Linux 11.04.
 The value of environment variable TERM is 'xterm'. 
 
-開発に使用したプラットフォームは Ubuntu Linux 11.04 です。
+ちなみに、開発に使用したプラットフォームは Ubuntu Linux 11.04 です。
 環境変数 TERM の値は 'xterm' です。
 
   $ echo $TERM
@@ -61,11 +62,8 @@ irb の起動時にバナーを表示させるには以下のようにします�
 - 'banner.rb' を $RUBYLIB のいずれかのディレクトリに置く。
 - ~/.irbrc に以下の行を追加する。
 
-  require 'banner'
 
-Please refer to the manual etc. of irb for details of .irbrc. 
-
-.irbrc についての詳細は irb のマニュアル等を参照してください。
+    require 'banner'
 
 
 == LICENSE
