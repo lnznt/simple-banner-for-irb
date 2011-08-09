@@ -1,11 +1,11 @@
 = simple-banner-for-irb
 == Description
 
-バナーを表示するシンプルなスクリプトです。
-単体実行もできますが、irb の起動時のバナー用に作りました。
+It is a script that displays the banner like the under. 
+It made it for the banner when irb was started. (Execution with the unit is also possible.)
 
-下のようなバナーを表示します。
-表示内容は、"RUBY"(バナー)、RUBY_DESCRIPTION、RUBY_COPYRIGHT です。
+下のようなバナーを表示するスクリプトです。
+irb の起動時のバナー用に作りました。(単体での実行も可能です)
 
 
      ######  #     # ######  #     #
@@ -17,37 +17,64 @@
      #     #  #####  ######     #
 
 
-
   ruby 1.9.2p0 (2010-08-18 revision 29036) [x86_64-linux]
   ruby - Copyright (C) 1993-2010 Yukihiro Matsumoto
 
+"RUBY" greatly displayed and the ruby version are displayed by coloring. 
+- ruby1.9 "Red"
+- ruby1.8 "Green"
 
-"RUBY" と RUBY_DESCRIPTION の ruby バージョン部分は色付きで表示されます。
+大きく表示された "RUBY" と ruby バージョンは色付きで表示されます。
+- ruby1.9 では「赤」
+- ruby1.8 では「緑」
 
-色は、ruby1.8 では「緑」、ruby1.9 では「赤」です。
+Moreover, the part of "RUBY" is displayed while scrolling. 
 
-また、"RUBY"はスクロールしながら表示されます。
+また、"RUBY" の部分はスクロールしながら表示されます。
+
 
 == System Requirement
 
-色付けやスクロールは TTY のエスケープシーケンスを使って制御しています。
+It operates on TTY that supports the escape sequence. 
+
 エスケープシーケンスをサポートした TTY 上で動作します。
 
-開発した環境は、Ubuntu Linux 11.04 です。環境変数 TERM の値は 'xterm' です。
+The platform used to develop is Ubuntu Linux 11.04.
+The value of environment variable TERM is 'xterm'. 
+
+開発に使用したプラットフォームは Ubuntu Linux 11.04 です。
+環境変数 TERM の値は 'xterm' です。
 
   $ echo $TERM
   xterm
 
+
 == Quick Start
-~/.irbrc に以下を追加すると irb の起動時にスクリプトが実行されてバナーが表示されます。
+
+To display the banner when irb is started, as follows is done. 
+
++ 'banner.rb' is put on either of directory of $RUBYLIB. 
++ The following lines are added to the ~/.irbrc
+
+irb の起動時にバナーを表示させるには以下のようにします。
+
++ 'banner.rb' を $RUBYLIB のいずれかのディレクトリに置く。
++ ~/.irbrc に以下の行を追加する。
 
   require 'banner'
 
-.irbrc についての詳細は irb のマニュアルなどを参照してください。
+Please refer to the manual etc. of irb for details of .irbrc. 
+
+.irbrc についての詳細は irb のマニュアル等を参照してください。
+
 
 == LICENSE
 
-本家 Ruby と同じライセンスで配布します。
-- http://www.ruby-lang.org/ja/LICENSE.txt
+This software is distributed by the same license as head of the house Ruby.
+(Please refer to the following linked Websites for details.)
 
+このソフトウェアは、本家 Ruby と同じライセンスで配布します。
+(詳しくは以下のリンク先を参照してください)
+
+- http://www.ruby-lang.org/ja/LICENSE.txt
 
