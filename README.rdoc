@@ -2,10 +2,10 @@
 == Description
 
 It is a script that displays the banner like the under. 
-It made it for the banner when irb was started. (Execution with the unit is also possible.)
+It made it for the banner when irb/pry was started. (Execution with the unit is also possible.)
 
 下のようなバナーを表示するスクリプトです。
-irb の起動時のバナー用に作りました。(単体での実行も可能です)
+irb/pry の起動時のバナー用に作りました。(単体での実行も可能です)
 
 
      ######  #     # ######  #     #
@@ -20,12 +20,16 @@ irb の起動時のバナー用に作りました。(単体での実行も可能
   ruby 1.9.2p0 (2010-08-18 revision 29036) [x86_64-linux]
   ruby - Copyright (C) 1993-2010 Yukihiro Matsumoto
 
-"RUBY" greatly displayed and the ruby version are displayed by coloring. 
-- ruby1.9 "Red"
+"RUBY" greatly displayed and the ruby version are displayed by coloring.
+- ruby2.1 "Red"
+- ruby2.0 "Blue"
+- ruby1.9 "Magenta"
 - ruby1.8 "Green"
 
 大きく表示された "RUBY" と ruby バージョンは色付きで表示されます。
-- ruby1.9 では「赤」
+- ruby2.1 では「赤」
+- ruby2.0 では「青」
+- ruby1.9 では「マゼンタ」
 - ruby1.8 では「緑」
 
 Moreover, the part of "RUBY" is displayed while scrolling. 
@@ -41,26 +45,21 @@ It operates on TTY that supports the escape sequence.
 
 
 By the way, The platform used to develop is Ubuntu Linux 11.04.
-The value of environment variable TERM is 'xterm'. 
 
 ちなみに、開発に使用したプラットフォームは Ubuntu Linux 11.04 です。
-環境変数 TERM の値は 'xterm' です。
-
-  $ echo $TERM
-  xterm
 
 
 == Quick Start
 
-To display the banner when irb is started, as follows is done. 
+To display the banner when irb or pry is started, as follows is done. 
 
 - 'banner.rb' is put on either of directory of $RUBYLIB. 
-- The following lines are added to the ~/.irbrc
+- The following lines are added to the ~/.irbrc or ~/.pryrc
 
-irb の起動時にバナーを表示させるには以下のようにします。
+irb また pry の起動時にバナーを表示させるには以下のようにします。
 
 - 'banner.rb' を $RUBYLIB のいずれかのディレクトリに置く。
-- ~/.irbrc に以下の行を追加する。
+- ~/.irbrc または ~/.pryrc に以下の行を追加する。
 
 
     require 'banner'
