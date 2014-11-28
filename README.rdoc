@@ -56,7 +56,7 @@ To display the banner when irb or pry is started, as follows is done.
 - 'banner.rb' is put on either of directory of $RUBYLIB. 
 - The following lines are added to the ~/.irbrc or ~/.pryrc
 
-irb また pry の起動時にバナーを表示させるには以下のようにします。
+irb または pry の起動時にバナーを表示させるには以下のようにします。
 
 - 'banner.rb' を $RUBYLIB のいずれかのディレクトリに置く。
 - ~/.irbrc または ~/.pryrc に以下の行を追加する。
