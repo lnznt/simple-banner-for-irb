@@ -4,9 +4,10 @@ instance_eval do
   #
   # version color
   #
-  version_color = RUBY_VERSION >= '2.0' ? :BLUE  :
-                  RUBY_VERSION >= '1.9' ? :RED   :
-                  RUBY_VERSION >= '1.8' ? :GREEN : :YELLOW
+  version_color = RUBY_VERSION >= '2.1' ? :RED     :
+                  RUBY_VERSION >= '2.0' ? :BLUE    :
+                  RUBY_VERSION >= '1.9' ? :MAGENTA :
+                  RUBY_VERSION >= '1.8' ? :GREEN   : :YELLOW
 
   #
   # escape sequence
