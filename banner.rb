@@ -37,9 +37,10 @@ instance_eval do
   move = proc {|y| "\e[#{y}H" }
 
   #
-  # strings
+  # banner / description
   #
-  banner1 = <<-'BANNER1'
+  banners = {}
+  banners[:DEFAULT] = <<-'BANNER_DEFAULT'
       ######  #     # ######  #     #
       #     # #     # #     #  #   #
       #     # #     # #     #   # #
@@ -47,21 +48,18 @@ instance_eval do
       #   #   #     # #     #    #
       #    #  #     # #     #    #
       #     #  #####  ######     #
-  BANNER1
+  BANNER_DEFAULT
 
-  banner2 =<<-'BANNER2'
+  banners[:FIGLET] = <<-'BANNER_FIGLET'
     ____          __           
    |  _ \\ __  _ | ||_   __  __
    | |_) || ||| || '_ \\| ||| ||
    |  _ <<| ||| || |_) || |_| ||
    |_||\_\\\__,//|_.__// \__, ||
                          /___//
-  BANNER2
+  BANNER_FIGLET
 
-  banner =  case banner_type
-              when :FIGLET  ; banner2
-              else          ; banner1
-            end
+  banner = banners[banner_type] || banner[:DEFAULT]
 
   descr = <<-DESCR
   #{RUBY_DESCRIPTION.sub(/\Aruby \S+/){ color[$&] }}
