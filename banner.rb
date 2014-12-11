@@ -11,8 +11,6 @@ instance_eval do
                   RUBY_VERSION >= '1.9' ? :MAGENTA :
                   RUBY_VERSION >= '1.8' ? :GREEN   : false
 
-  banner_type = :DEFAULT
-
   #
   # procedure
   #
@@ -39,8 +37,7 @@ instance_eval do
   #
   # banner / description
   #
-  banners = {}
-  banners[:DEFAULT] = <<-'BANNER_DEFAULT'
+  banner = <<-'BANNER_DEFAULT'
       ######  #     # ######  #     #
       #     # #     # #     #  #   #
       #     # #     # #     #   # #
@@ -49,17 +46,6 @@ instance_eval do
       #    #  #     # #     #    #
       #     #  #####  ######     #
   BANNER_DEFAULT
-
-  banners[:FIGLET] = <<-'BANNER_FIGLET'
-    ____          __           
-   |  _ \\ __  _ | ||_   __  __
-   | |_) || ||| || '_ \\| ||| ||
-   |  _ <<| ||| || |_) || |_| ||
-   |_||\_\\\__,//|_.__// \__, ||
-                         /___//
-  BANNER_FIGLET
-
-  banner = banners[banner_type] || banner[:DEFAULT]
 
   descr = <<-DESCR
   #{RUBY_DESCRIPTION.sub(/\Aruby \S+/){ color[$&] }}
